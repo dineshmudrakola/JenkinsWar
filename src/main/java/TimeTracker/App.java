@@ -2,6 +2,7 @@ package TimeTracker;
 
 /**
  * Hello world!
+ * This is the first program
  *
  */
 public class App 
