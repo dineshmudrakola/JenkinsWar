@@ -11,21 +11,5 @@ pipeline {
                 input('Do you want to proceed?')
             }
         }
-        stage ('Three') {
-            parallel {
-                stage ('Unit Test') {
-                    steps (
-                        echo "Running the unit test..."
-                    }
-            }
-                        stage ('Integration test') {
-                            agent {
-                                Docker {
-                                    resuseNode false 
-                                    image'ubuntu'
-                                }
-                            }
-                        }
-         }
-      }
+     }
  }
