@@ -1,10 +1,31 @@
 pipeline {
-    agent { docker 'maven:3.3.3' }
+    agent any 
     stages {
-        stage('build') {
+        stage('one') {
             steps {
-                bat 'mvn --version'
+                echo 'Hi, This is Dinesh'
             }
         }
-    }
-}
+        stage('Two') {
+            steps {
+                input('Do you want to proceed?')
+            }
+        }
+        stage ('Three') {
+            parallel {
+                stage ('Unit Test') {
+                    steps (
+                        echo "Running the unit test..."
+                    }
+            }
+                        stage ('Integration test') {
+                            agent {
+                                Docker {
+                                    resuseNode false 
+                                    image'ubuntu'
+                                }
+                            }
+                        }
+         }
+      }
+ }
